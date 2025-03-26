@@ -1,57 +1,48 @@
-// popup.js - Controls popup behavior for newsletter signup and Google Sheets integration
-
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const popup = document.getElementById("popup");
   const closeBtn = document.getElementById("close");
   const subscribeBtn = popup.querySelector("button");
   const emailInput = popup.querySelector("input[type='email']");
 
-  // Show popup after short delay
+  // Show popup after 3 seconds
   setTimeout(() => {
     popup.style.display = "flex";
-  }, 1500);
+  }, 3000);
 
-  // Close the popup on clicking "No Thanks"
+  // Close the popup
   closeBtn.addEventListener("click", () => {
     popup.style.display = "none";
   });
 
-  // Close popup using keyboard
-  closeBtn.addEventListener("keypress", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      popup.style.display = "none";
-    }
-  });
-
-  // Subscribe button handler
-  subscribeBtn.addEventListener("click", () => {
+  // Submit email to Google Sheets
+  subscribeBtn.addEventListener("click", async () => {
     const email = emailInput.value.trim();
-    if (!email) {
+    if (!email || !validateEmail(email)) {
       alert("Please enter a valid email address.");
       return;
     }
 
-    // Replace with your actual Sheet.best or Google Apps Script URL
-    const sheetUrl = "https://api.sheetbest.com/sheets/5276babe-64a4-44b8-82d4-3a3da8031e89";
-
-    fetch(sheetUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email: email })
-    })
-      .then((response) => {
-        if (response.ok) {
-          alert("Thank you for subscribing!");
-          popup.style.display = "none";
-        } else {
-          alert("There was an error submitting your email. Please try again later.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("Network error. Please try again later.");
+    try {
+      const response = await fetch("https://api.sheetbest.com/sheets/5276babe-64a4-44b8-82d4-3a3da8031e89", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ Email: email })
       });
+
+      if (response.ok) {
+        alert("Thank you for subscribing!");
+        popup.style.display = "none";
+      } else {
+        alert("There was a problem with your subscription. Please try again.");
+      }
+    } catch (error) {
+      alert("Network error. Please check your connection.");
+    }
   });
+
+  // Email validation function
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email.toLowerCase());
+  }
 });

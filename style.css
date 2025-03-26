@@ -1,0 +1,231 @@
+/* === Global Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #1a1a1a;
+  background-color: #fdfdfd;
+  line-height: 1.6;
+}
+
+/* === Color Palette === */
+:root {
+  --deep-purple: #4B2E83;
+  --soft-cream: #f5f0ea;
+  --elegant-gray: #666666;
+  --clean-white: #ffffff;
+  --bold-black: #000000;
+  --accent-gray: #cccccc;
+}
+
+/* === Typography === */
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--deep-purple);
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 2rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+p, li, label, input, textarea, button {
+  font-size: 1rem;
+  color: var(--elegant-gray);
+}
+
+/* === Layout === */
+.section {
+  padding: 2rem 1.5rem;
+  background-color: var(--soft-cream);
+}
+
+.hero {
+  background: linear-gradient(120deg, var(--deep-purple), var(--bold-black));
+  color: var(--clean-white);
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.hero h2 {
+  color: var(--clean-white);
+  font-size: 2.5rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+/* === Navbar === */
+.navbar {
+  background-color: var(--deep-purple);
+  color: var(--clean-white);
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: var(--clean-white);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: var(--soft-cream);
+}
+
+/* === Forms === */
+form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input, textarea, button {
+  padding: 0.75rem;
+  border: 1px solid var(--accent-gray);
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+button {
+  background-color: var(--deep-purple);
+  color: var(--clean-white);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #37235e;
+}
+
+/* === Popup === */
+.popup {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+}
+
+.popup-content {
+  background: var(--clean-white);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+.popup-content input {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.popup-content button {
+  width: 100%;
+  background-color: var(--deep-purple);
+}
+
+#close {
+  display: block;
+  margin-top: 1rem;
+  cursor: pointer;
+  color: var(--elegant-gray);
+  font-size: 0.9rem;
+}
+
+/* === Stories Section === */
+.stories {
+  display: grid;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.stories article {
+  padding: 1rem;
+  background-color: var(--clean-white);
+  border-left: 4px solid var(--deep-purple);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* === Get Involved Buttons === */
+.involvement-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.involvement-options button {
+  width: 80%;
+}
+
+/* === Footer === */
+footer {
+  background-color: var(--deep-purple);
+  color: var(--clean-white);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+/* === Responsive Design === */
+@media (min-width: 768px) {
+  .stories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .involvement-options {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  nav ul {
+    gap: 2rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+}
